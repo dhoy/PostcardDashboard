@@ -59,4 +59,4 @@ target/
 #eclipse
 .project
 .pydevproject
-.prefs
+.settings
