@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>dashMain</class>
  <widget class="QMainWindow" name="dashMain">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1569</width>
-    <height>822</height>
+    <width>1600</width>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -418,6 +421,8 @@ QTabBar::tab {
 }
 
 QTabWidget::pane {
+	color: #b1b1b1;
+	background-color: #323232;
 	border: 1px solid #444;
 	top: 1px;
 }
@@ -515,20 +520,13 @@ QToolButton
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item alignment="Qt::AlignBottom">
-       <widget class="QToolButton" name="toolButton">
+      <item>
+       <widget class="QLabel" name="lblTitle">
         <property name="text">
-         <string>...</string>
+         <string/>
         </property>
-        <property name="icon">
-         <iconset resource="../resources.qrc">
-          <normaloff>:/images/images/pixi_logo_new.png</normaloff>:/images/images/pixi_logo_new.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>150</width>
-          <height>60</height>
-         </size>
+        <property name="pixmap">
+         <pixmap resource="../resources.qrc">:/images/images/pixi_logo_new.png</pixmap>
         </property>
        </widget>
       </item>
@@ -571,6 +569,61 @@ QToolButton
      <widget class="QTabWidget" name="tabReport">
       <property name="contextMenuPolicy">
        <enum>Qt::NoContextMenu</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QTabBar::tab {
+	color: #b1b1b1;
+	border: 1px solid #444;
+	border-bottom-style: none;
+	background-color: #323232;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 3px;
+	padding-bottom: 2px;
+	margin-right: -1px;
+}
+
+QTabWidget::pane {
+	border: 1px solid #444;
+	top: 1px;
+}
+
+QTabBar::tab:last
+{
+	margin-right: 0; /* the last selected tab has nothing to overlap with on the right */
+	border-top-right-radius: 3px;
+}
+
+QTabBar::tab:first:!selected
+{
+	margin-left: 0px; /* the last selected tab has nothing to overlap with on the right */
+	border-top-left-radius: 3px;
+}
+
+QTabBar::tab:!selected
+{
+	color: #b1b1b1;
+	border-bottom-style: solid;
+	margin-top: 3px;
+	background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:1 #212121, stop:.4 #343434);
+}
+
+QTabBar::tab:selected
+{
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	margin-bottom: 0px;
+}
+
+QTabBar::tab:!selected:hover
+{
+	/*border-top: 2px solid #ffaa00;
+	padding-bottom: 3px;*/
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:1 #212121, stop:0.4 #343434, stop:0.2 #343434, stop:0.1 #ffaa00);
+}
+</string>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -714,7 +767,7 @@ QToolButton
 background-color: rgb(234, 234, 234);</string>
           </property>
           <property name="editTriggers">
-           <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::EditKeyPressed</set>
+           <set>QAbstractItemView::NoEditTriggers</set>
           </property>
           <property name="alternatingRowColors">
            <bool>true</bool>
@@ -800,6 +853,11 @@ background-color: rgb(234, 234, 234);</string>
           <column>
            <property name="text">
             <string>Contribution Margin</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>20% Adjustment Non Campaign</string>
            </property>
           </column>
          </widget>
@@ -1286,7 +1344,7 @@ background-color: rgb(234, 234, 234);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1569</width>
+     <width>1600</width>
      <height>21</height>
     </rect>
    </property>

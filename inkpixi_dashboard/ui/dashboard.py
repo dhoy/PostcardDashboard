@@ -11,7 +11,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_dashMain(object):
     def setupUi(self, dashMain):
         dashMain.setObjectName("dashMain")
-        dashMain.resize(1569, 822)
+        dashMain.setWindowModality(QtCore.Qt.NonModal)
+        dashMain.resize(1600, 900)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/images/images/postcard.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         dashMain.setWindowIcon(icon)
@@ -415,6 +416,8 @@ class Ui_dashMain(object):
 "}\n"
 "\n"
 "QTabWidget::pane {\n"
+"    color: #b1b1b1;\n"
+"    background-color: #323232;\n"
 "    border: 1px solid #444;\n"
 "    top: 1px;\n"
 "}\n"
@@ -513,13 +516,11 @@ class Ui_dashMain(object):
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.toolButton = QtWidgets.QToolButton(self.centralwidget)
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/images/images/pixi_logo_new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.toolButton.setIcon(icon1)
-        self.toolButton.setIconSize(QtCore.QSize(150, 60))
-        self.toolButton.setObjectName("toolButton")
-        self.horizontalLayout_3.addWidget(self.toolButton, QtCore.Qt.AlignBottom)
+        self.lblTitle = QtWidgets.QLabel(self.centralwidget)
+        self.lblTitle.setText("")
+        self.lblTitle.setPixmap(QtGui.QPixmap(":/images/images/pixi_logo_new.png"))
+        self.lblTitle.setObjectName("lblTitle")
+        self.horizontalLayout_3.addWidget(self.lblTitle)
         self.label_2 = QtWidgets.QLabel(self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(18)
@@ -535,6 +536,59 @@ class Ui_dashMain(object):
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
         self.tabReport = QtWidgets.QTabWidget(self.centralwidget)
         self.tabReport.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        self.tabReport.setStyleSheet("QTabBar::tab {\n"
+"    color: #b1b1b1;\n"
+"    border: 1px solid #444;\n"
+"    border-bottom-style: none;\n"
+"    background-color: #323232;\n"
+"    padding-left: 10px;\n"
+"    padding-right: 10px;\n"
+"    padding-top: 3px;\n"
+"    padding-bottom: 2px;\n"
+"    margin-right: -1px;\n"
+"}\n"
+"\n"
+"QTabWidget::pane {\n"
+"    border: 1px solid #444;\n"
+"    top: 1px;\n"
+"}\n"
+"\n"
+"QTabBar::tab:last\n"
+"{\n"
+"    margin-right: 0; /* the last selected tab has nothing to overlap with on the right */\n"
+"    border-top-right-radius: 3px;\n"
+"}\n"
+"\n"
+"QTabBar::tab:first:!selected\n"
+"{\n"
+"    margin-left: 0px; /* the last selected tab has nothing to overlap with on the right */\n"
+"    border-top-left-radius: 3px;\n"
+"}\n"
+"\n"
+"QTabBar::tab:!selected\n"
+"{\n"
+"    color: #b1b1b1;\n"
+"    border-bottom-style: solid;\n"
+"    margin-top: 3px;\n"
+"    background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:1 #212121, stop:.4 #343434);\n"
+"}\n"
+"\n"
+"QTabBar::tab:selected\n"
+"{\n"
+"    border-top-left-radius: 3px;\n"
+"    border-top-right-radius: 3px;\n"
+"    margin-bottom: 0px;\n"
+"}\n"
+"\n"
+"QTabBar::tab:!selected:hover\n"
+"{\n"
+"    /*border-top: 2px solid #ffaa00;\n"
+"    padding-bottom: 3px;*/\n"
+"    border-top-left-radius: 3px;\n"
+"    border-top-right-radius: 3px;\n"
+"    background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop:1 #212121, stop:0.4 #343434, stop:0.2 #343434, stop:0.1 #ffaa00);\n"
+"}\n"
+"")
         self.tabReport.setObjectName("tabReport")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
@@ -598,11 +652,11 @@ class Ui_dashMain(object):
         self.tblReport.setFont(font)
         self.tblReport.setStyleSheet("color: rgb(0, 0, 0);\n"
 "background-color: rgb(234, 234, 234);")
-        self.tblReport.setEditTriggers(QtWidgets.QAbstractItemView.AnyKeyPressed|QtWidgets.QAbstractItemView.EditKeyPressed)
+        self.tblReport.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.tblReport.setAlternatingRowColors(True)
         self.tblReport.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.tblReport.setObjectName("tblReport")
-        self.tblReport.setColumnCount(16)
+        self.tblReport.setColumnCount(17)
         self.tblReport.setRowCount(0)
         item = QtWidgets.QTableWidgetItem()
         self.tblReport.setHorizontalHeaderItem(0, item)
@@ -636,6 +690,8 @@ class Ui_dashMain(object):
         self.tblReport.setHorizontalHeaderItem(14, item)
         item = QtWidgets.QTableWidgetItem()
         self.tblReport.setHorizontalHeaderItem(15, item)
+        item = QtWidgets.QTableWidgetItem()
+        self.tblReport.setHorizontalHeaderItem(16, item)
         self.gridLayout.addWidget(self.tblReport, 2, 0, 1, 2)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -834,7 +890,7 @@ class Ui_dashMain(object):
         self.verticalLayout_3.addWidget(self.tabReport)
         dashMain.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(dashMain)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1569, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1600, 21))
         self.menubar.setObjectName("menubar")
         dashMain.setMenuBar(self.menubar)
 
@@ -845,7 +901,6 @@ class Ui_dashMain(object):
     def retranslateUi(self, dashMain):
         _translate = QtCore.QCoreApplication.translate
         dashMain.setWindowTitle(_translate("dashMain", "InkPixi Postcard Dashboard"))
-        self.toolButton.setText(_translate("dashMain", "..."))
         self.label_2.setText(_translate("dashMain", "Postcard Campaign Dashboard"))
         self.leSourceCodeSubj.setPlaceholderText(_translate("dashMain", "Source Campaign"))
         self.leSourceCodeBench.setPlaceholderText(_translate("dashMain", "Benchmark Campaign"))
@@ -887,6 +942,8 @@ class Ui_dashMain(object):
         item.setText(_translate("dashMain", "Gross Sales Per Order"))
         item = self.tblReport.horizontalHeaderItem(15)
         item.setText(_translate("dashMain", "Contribution Margin"))
+        item = self.tblReport.horizontalHeaderItem(16)
+        item.setText(_translate("dashMain", "20% Adjustment Non Campaign"))
         self.gbQtr.setTitle(_translate("dashMain", "Quater"))
         self.gbYear.setTitle(_translate("dashMain", "Year"))
         self.cbListType.setItemText(0, _translate("dashMain", "-- List Type --"))

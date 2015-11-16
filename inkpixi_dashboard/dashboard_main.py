@@ -5,7 +5,7 @@ import webbrowser
 from ui import Ui_dashMain
 from PyQt5.QtWidgets import QMainWindow, QApplication, QCheckBox, QTableWidgetItem, QFileDialog, QMessageBox, QLabel
 from PyQt5.QtCore import QUrl, QThread, pyqtSignal, Qt
-from PyQt5 import QtNetwork, QtWebKit, QtPrintSupport
+from PyQt5 import QtNetwork, QtWebKit, QtPrintSupport #these three are needed to properly build the project, warrants further investigation.
 from ui.pbarReport import Ui_pbarReport
 from database import data
 
@@ -35,8 +35,8 @@ class Dashboard(QMainWindow, Ui_dashMain):
         self.chkListSelection.clicked.connect(self.toggle_columns)
         self.chkModelRank.clicked.connect(self.toggle_columns)
         self.chkListCost.clicked.connect(self.toggle_columns)
-
         
+       
         #list types drop down
         cb_types = self.db.get_list_types()
         self.cbListType.addItems(cb_types)
@@ -437,7 +437,7 @@ class BuildReport(QThread):
         
     def run(self):
         data, data_avg = self.db.get_report(self.qtrs, self.yrs, self.lst_type, self.lst_cat, self.lst_sub, self.vendor)
-        
+
         if data:
             self.tblReport.setRowCount(len(data))
             for i, row in enumerate(data):

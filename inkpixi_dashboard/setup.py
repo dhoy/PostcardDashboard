@@ -51,7 +51,7 @@ bdist_msi_options = {
     #'initial_target_dir': r'[Program Files] \%s\%s' % ('test', 'test'),
     }
 setup(
-     version = "0.2",
+     version = "1.0",
      description = "Visibility to post card campaign data.",
      author = "David Hoy",
      name = "Postcard Dashboard",

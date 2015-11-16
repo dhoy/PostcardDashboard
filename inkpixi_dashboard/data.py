@@ -138,7 +138,7 @@ def get_report(qtrs, yrs, lst_type, lst_cat, lst_sub, vendor):
                     g.gross_revenue / h.printed_quantity gross_revenue_per_card,
                     CAST(g.gross_revenue / o.orders AS DECIMAL(10,2)) gross_revenue_per_order,
                     CONVERT(VARCHAR, CAST(g.gross_revenue - (p.product_total * .25) - h.list_invoice_amount - (h.printed_quantity * .00714) - (h.printed_quantity * .245) - (h.printed_quantity * .085) - (o.orders * 7.5) AS MONEY), 1) contribution_margin,
-                    CONVERT(VARCHAR, CAST(((g.gross_revenue * 1.2) - ((p.product_total * .25) * 1.2)) - h.list_invoice_amount - (h.printed_quantity * .00714) - (h.printed_quantity * .245) - (h.printed_quantity * .085) - ((o.orders * 7.5) * 1.2) AS MONEY), 1) twenty_percent                     
+                    CONVERT(VARCHAR, CAST((g.gross_revenue - (p.product_total * .25) - h.list_invoice_amount - (h.printed_quantity * .00714) - (h.printed_quantity * .245) - (h.printed_quantity * .085) - (o.orders * 7.5)) * 1.2 AS MONEY), 1) twenty_percent   
                 FROM
                     dbo.PostcardCampaignHistory h
                 JOIN
